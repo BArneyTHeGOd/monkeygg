@@ -22,7 +22,7 @@
             margin-top: 20px;
             text-shadow: 2px 2px 4px #000;
         }
-        .about-button {
+        .about-button, .solve-button {
             width: 160px;
             height: 60px;
             background-color: #FF4136;
@@ -34,7 +34,7 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             transition: background-color 0.3s ease-in-out, transform 0.2s;
         }
-        .about-button:hover {
+        .about-button:hover, .solve-button:hover {
             background-color: #C0392B;
             transform: scale(1.05);
         }
@@ -104,10 +104,16 @@
             background-color: rgba(255, 255, 255, 0.1);
             border-radius: 15px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
         .math-problem {
             font-size: 1.5em;
             margin-bottom: 20px;
+        }
+        .solve-button {
+            margin: 5px 0;
         }
     </style>
 </head>
@@ -118,27 +124,17 @@
     <button class="about-button" onclick="showAbout()">About</button>
     <div class="math-problem-container">
         <div class="math-problem">
-            Solve for x: 2x + 3 = 11
+            Problem 1: Solve for x: 2x + 3 = 11
         </div>
-        <button class="about-button" onclick="showSolution1()">Show Solution</button>
-    </div>
-    <div class="math-problem-container">
+        <button class="solve-button" onclick="showSolution('solution1')">Show Solution</button>
         <div class="math-problem">
-            Simplify: 3(2x - 4) + 5 = 19
+            Problem 2: Solve for y: 3y - 4 = 2y + 5
         </div>
-        <button class="about-button" onclick="showSolution2()">Show Solution</button>
-    </div>
-    <div class="math-problem-container">
+        <button class="solve-button" onclick="showSolution('solution2')">Show Solution</button>
         <div class="math-problem">
-            Solve for y: y/3 + 5 = 8
+            Problem 3: Find the value of z: 4z + 2 = 3(z + 1)
         </div>
-        <button class="about-button" onclick="showSolution3()">Show Solution</button>
-    </div>
-    <div class="math-problem-container">
-        <div class="math-problem">
-            Calculate the area of a triangle with base 10 cm and height 5 cm.
-        </div>
-        <button class="about-button" onclick="showSolution4()">Show Solution</button>
+        <button class="solve-button" onclick="showSolution('solution3')">Show Solution</button>
     </div>
     <div class="footer">
         <a href="https://twitter.com" target="_blank">Twitter</a>
