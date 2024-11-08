@@ -98,6 +98,17 @@
             margin: 0 10px;
             font-size: 1.5em;
         }
+        .math-problem-container {
+            margin-top: 40px;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .math-problem {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 <body>
@@ -105,6 +116,30 @@
     <div class="button-container" id="button-container"></div>
     <div class="preview-container" id="preview-container"></div>
     <button class="about-button" onclick="showAbout()">About</button>
+    <div class="math-problem-container">
+        <div class="math-problem">
+            Solve for x: 2x + 3 = 11
+        </div>
+        <button class="about-button" onclick="showSolution1()">Show Solution</button>
+    </div>
+    <div class="math-problem-container">
+        <div class="math-problem">
+            Simplify: 3(2x - 4) + 5 = 19
+        </div>
+        <button class="about-button" onclick="showSolution2()">Show Solution</button>
+    </div>
+    <div class="math-problem-container">
+        <div class="math-problem">
+            Solve for y: y/3 + 5 = 8
+        </div>
+        <button class="about-button" onclick="showSolution3()">Show Solution</button>
+    </div>
+    <div class="math-problem-container">
+        <div class="math-problem">
+            Calculate the area of a triangle with base 10 cm and height 5 cm.
+        </div>
+        <button class="about-button" onclick="showSolution4()">Show Solution</button>
+    </div>
     <div class="footer">
         <a href="https://twitter.com" target="_blank">Twitter</a>
         <a href="https://facebook.com" target="_blank">Facebook</a>
@@ -115,55 +150,3 @@
             const buttonContainer = document.getElementById('button-container');
             const previewContainer = document.getElementById('preview-container');
 
-            const sites = [
-                { name: 'Khan Academy', url: 'https://www.khanacademy.org/math', preview: 'Khan Academy: A free online resource offering a comprehensive range of math topics, from basic arithmetic to advanced calculus.' },
-                { name: 'Math is Fun', url: 'https://www.mathsisfun.com/', preview: 'Math is Fun: Provides easy-to-understand explanations and interactive activities for a wide range of math concepts.' },
-                { name: 'Cool Math', url: 'https://www.coolmath.com/', preview: 'Cool Math: Features engaging math games, puzzles, and interactive lessons aimed at making math enjoyable.', secret: true },
-                { name: 'Desmos', url: 'https://www.desmos.com/', preview: 'Desmos: An advanced graphing calculator and a suite of interactive math activities for students and teachers.' },
-                { name: 'Math Planet', url: 'https://www.mathplanet.com/', preview: 'Math Planet: Offers lessons and practice exercises for high school math subjects, including algebra, geometry, and SAT prep.' },
-                { name: 'Mathway', url: 'https://www.mathway.com/', preview: 'Mathway: An online math problem solver that provides step-by-step solutions for a variety of math problems.' },
-                { name: 'Purplemath', url: 'https://www.purplemath.com/', preview: 'Purplemath: A resource with comprehensive algebra lessons and homework guidelines to help students understand and solve math problems.' },
-                { name: 'Brightstorm', url: 'https://www.brightstorm.com/math/', preview: 'Brightstorm: Offers video tutorials and resources for high school math and science subjects, taught by experienced educators.' },
-                { name: 'IXL', url: 'https://www.ixl.com/math/', preview: 'IXL: A personalized learning platform that covers a wide range of math topics with interactive practice problems.' },
-                { name: 'Wolfram Alpha', url: 'https://www.wolframalpha.com/', preview: 'Wolfram Alpha: A computational search engine that provides answers and step-by-step solutions for various math problems.' }
-            ];
-
-            sites.forEach(site => {
-                const button = document.createElement('button');
-                button.className = 'math-button';
-                button.textContent = `Cena Math ${site.name}`;
-                button.onmouseover = () => showPreview(site.preview);
-                button.onmouseout = () => hidePreview();
-                button.onclick = () => openMathLink(site.url, site.secret);
-                buttonContainer.appendChild(button);
-            });
-
-            function showPreview(previewText) {
-                previewContainer.innerHTML = previewText;
-                previewContainer.classList.add('show');
-            }
-
-            function hidePreview() {
-                previewContainer.classList.remove('show');
-            }
-
-            function openSecretLink() {
-                window.location.href = 'https://docs.google.com/presentation/d/1U2E8-_VoRouaF1BztUQXAhzGIPLYviK3Fj1qmfbr_vY/edit#slide=id.g2fb098d651c_1_1';
-            }
-
-            function openMathLink(url, isSecret) {
-                if (isSecret) {
-                    openSecretLink();
-                }
-                window.open(url, '_blank');
-            }
-
-            function showAbout() {
-                alert('Made by Arnav');
-            }
-
-            window.showAbout = showAbout;
-        });
-    </script>
-</body>
-</html>
