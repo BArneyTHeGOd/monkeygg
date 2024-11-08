@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barney's Math Help</title>
+    <style>
+        body {
+            margin: 0;
+            background: linear-gradient(to bottom, #001f3f, #0074D9);
+            color: white;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: 'Arial', sans-serif;
+            transition: background-color 0.3s ease-in-out;
+            text-align: center;
+        }
+        .title {
+            font-size: 3em;
+            margin-top: 20px;
+            text-shadow: 2px 2px 4px #000;
+        }
+        .about-button {
+            width: 160px;
+            height: 60px;
+            background-color: #FF4136;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            margin-top: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease-in-out, transform 0.2s;
+        }
+        .about-button:hover {
+            background-color: #C0392B;
+            transform: scale(1.05);
+        }
+        .math-button {
+            width: 260px;
+            height: 70px;
+            margin: 15px;
+            background-color: #39CCCC;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease-in-out, transform 0.2s;
+        }
+        .math-button:hover {
+            background-color: #16A085;
+            transform: scale(1.05);
+        }
+        .button-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .preview-container {
+            display: none;
+            position: absolute;
+            top: 200px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 320px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            background-color: rgba(0, 31, 63, 0.9);
+            text-align: left;
+            z-index: 20;
+            color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: opacity 0.3s ease-in-out;
+            opacity: 0;
+        }
+        .preview-container.show {
+            display: block;
+            opacity: 1;
+        }
+        .footer {
+            margin-top: auto;
+            margin-bottom: 20px;
+        }
+        .footer a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 1.5em;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="title">BY BARNEY</h1>
+    <div class="button-container" id="button-container"></div>
+    <div class="preview-container" id="preview-container"></div>
+    <button class="about-button" onclick="showAbout()">About</button>
+    <div class="footer">
+        <a href="https://twitter.com" target="_blank">Twitter</a>
+        <a href="https://facebook.com" target="_blank">Facebook</a>
+        <a href="https://instagram.com" target="_blank">Instagram</a>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const buttonContainer = document.getElementById('button-container');
+            const previewContainer = document.getElementById('preview-container');
+
+            const sites = [
+                { name: 'Khan Academy', url: 'https://www.khanacademy.org/math', preview: 'Khan Academy: A free online resource offering a comprehensive range of math topics, from basic arithmetic to advanced calculus.' },
+                { name: 'Math is Fun', url: 'https://www.mathsisfun.com/', preview: 'Math is Fun: Provides easy-to-understand explanations and interactive activities for a wide range of math concepts.' },
+                { name: 'Cool Math', url: 'https://www.coolmath.com/', preview: 'Cool Math: Features engaging math games, puzzles, and interactive lessons aimed at making math enjoyable.', secret: true },
+                { name: 'Desmos', url: 'https://www.desmos.com/', preview: 'Desmos: An advanced graphing calculator and a suite of interactive math activities for students and teachers.' },
+                { name: 'Math Planet', url: 'https://www.mathplanet.com/', preview: 'Math Planet: Offers lessons and practice exercises for high school math subjects, including algebra, geometry, and SAT prep.' },
+                { name: 'Mathway', url: 'https://www.mathway.com/', preview: 'Mathway: An online math problem solver that provides step-by-step solutions for a variety of math problems.' },
+                { name: 'Purplemath', url: 'https://www.purplemath.com/', preview: 'Purplemath: A resource with comprehensive algebra lessons and homework guidelines to help students understand and solve math problems.' },
+                { name: 'Brightstorm', url: 'https://www.brightstorm.com/math/', preview: 'Brightstorm: Offers video tutorials and resources for high school math and science subjects, taught by experienced educators.' },
+                { name: 'IXL', url: 'https://www.ixl.com/math/', preview: 'IXL: A personalized learning platform that covers a wide range of math topics with interactive practice problems.' },
+                { name: 'Wolfram Alpha', url: 'https://www.wolframalpha.com/', preview: 'Wolfram Alpha: A computational search engine that provides answers and step-by-step solutions for various math problems.' }
+            ];
+
+            sites.forEach(site => {
+                const button = document.createElement('button');
+                button.className = 'math-button';
+                button.textContent = `Cena Math ${site.name}`;
+                button.onmouseover = () => showPreview(site.preview);
+                button.onmouseout = () => hidePreview();
+                button.onclick = () => openMathLink(site.url, site.secret);
+                buttonContainer.appendChild(button);
+            });
+
+            function showPreview(previewText) {
+                previewContainer.innerHTML = previewText;
+                previewContainer.classList.add('show');
+            }
+
+            function hidePreview() {
+                previewContainer.classList.remove('show');
+            }
+
+            function openSecretLink() {
+                window.location.href = 'https://docs.google.com/presentation/d/1U2E8-_VoRouaF1BztUQXAhzGIPLYviK3Fj1qmfbr_vY/edit#slide=id.g2fb098d651c_1_1';
+            }
+
+            function openMathLink(url, isSecret) {
+                if (isSecret) {
+                    openSecretLink();
+                }
+                window.open(url, '_blank');
+            }
+
+            function showAbout() {
+                alert('Made by Arnav');
+            }
+
+            window.showAbout = showAbout;
+        });
+    </script>
+</body>
+</html>
